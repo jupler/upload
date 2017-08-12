@@ -1,0 +1,357 @@
+<?php 
+  session_start();
+  if($_SESSION['rs_log_us'] == ""){
+    header("location:login.php?cant=login");
+
+    //echo"salah";
+  }else{
+?>
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="jquery.validate.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-price-format/2.2.0/jquery.priceformat.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+      
+
+  <?php
+   
+   
+  include ("koneksiyt.php");
+   
+  ?>
+
+<style>
+body{
+  font-family: Arial;
+  margin:auto;
+  background: red;
+
+}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+/* Color settings */
+/* Styles */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 400px;
+  margin: 25px ;
+  float: left;
+}
+
+form {
+  padding: 20px;
+  background: #fff;
+  color: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px #999;
+}
+form label,
+form input,
+form button {
+  border: 0;
+  margin-bottom: 3px;
+  display: block;
+  width: 100%;
+  color: #111;
+  font-size: 14px;
+
+
+}
+form input {
+    width: 100%;
+    padding: 12px 20px;
+
+    display: inline-block;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input:focus{
+  border:1px solid #66a1fa;
+
+}
+form button {
+  height: 40px;
+  line-height: 30px;
+  background: #e67e22;
+  color: #fff;
+  font-size: 17px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.error {
+  color: #000;
+
+
+}
+
+.article-reference {
+  margin-top: 15px;
+}
+.article-reference a {
+  color: #e67e22;
+}
+textarea{
+  border:1px solid #ccc;
+  font-family: arial;
+   height: 25px;
+  line-height: 25px;
+  background: #fff;
+  color: #000;
+  padding: 0 6px;
+    height: 35px;
+  font-size: 14px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+p{
+  margin-bottom: 18px;
+}
+select{
+      width: 30%;
+    padding: 12px 20px;
+
+    display: inline-block;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.nb{
+  font-family: arial;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 17px;
+}
+
+.all-kt{
+  width: 30%;
+    padding: 12px 20px;
+    margin-left:0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button:hover{
+  background: #444;
+  transition:0.4s;
+}
+.skrng{
+  color: #777;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 4px;
+  font-family: arial;
+}
+h4 {
+    font-size:18px;
+    font-weight:bold;
+}
+.fa-spin-custom, .glyphicon-spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+</style>
+
+<?php
+
+if($_REQUEST['succes'] == 'confirmation')
+
+{
+
+echo"<div class='succes'><b><i class='  fa fa-check'></i> Terima Kasih</b> Anda sudah menjual barang Silahkan lihat di Index Halaman.
+</div>";
+
+  }
+
+   ?>
+<div class="container">
+
+<form  name="entri" method="post" action="entri.php?a=add" enctype="multipart/form-data" >
+<div class="skrng"><i class="fa fa-address-card"></i> Tambah Barang</div>
+<div class="nb">Operator</div>
+<div style="color:#111;margin-bottom:7px;font-weight:bold;">Upload foto barang anda</diV>
+<input type="file" name="gambar_jual" accept="image/gif, image/jpeg, image/x-ms-bmp, image/x-png" size="26" class="textbox" />
+</p>
+
+      <input type="text" name="judul_barang" id="judul_barang" placeholder="Judul Barang">
+</p>
+
+      <input type="text" name="ketrgn_gmbr" id="ketrgn_gmbr" placeholder="Keterangan Jual Barang">
+</p>
+      <input type="text" name="harga" id="example2" placeholder="Harga Jual">
+</p>
+
+<button type="submit">Tambah Barang</button>
+
+
+
+<?php
+
+
+
+
+if($_REQUEST['a'] == 'add') 
+
+
+{
+       $uploadDir = 'gambar-item/';
+
+
+$fileName = $_FILES['gambar_jual']['name'];
+$tmpName  = $_FILES['gambar_jual']['tmp_name'];
+$fileSize = $_FILES['gambar_jual']['size'];
+$fileType = $_FILES['gambar_jual']['type'];
+
+$filePath = $uploadDir . $fileName;
+
+$result = move_uploaded_file($tmpName, $filePath);
+if (!$result) {
+echo "<div style='margin-top:7px;color:#111;'>Ada kesalahan dalam mengupload barang, Ceck input dengan benar <strong>ERROR!</strong></div>";
+exit;
+}
+
+if(!get_magic_quotes_gpc())
+{
+    $fileName = addslashes($fileName);
+    $filePath = addslashes($filePath);
+}
+
+$title = $_POST['title'];
+$description = $_POST['description'];
+
+$query = "INSERT INTO $user_pictures (gambar_jual, title, description) VALUES ('$filePath', '$title', '$description')";
+
+
+
+
+sqlsrv_query($conn_p,"INSERT INTO box_jualbeli (gambar_jual,judul_barang,ketrgn_gmbr,harga) VALUES
+  ('$fileName','$_POST[judul_barang]','$_POST[ketrgn_gmbr]','$_POST[harga]')");
+
+          echo '
+         <center><div style="color:#333;font-weight:bold;margin-top:22px;"> Wait for a your request, proses upload....<br>
+         <img src="loading.gif">
+       </center></div><meta http-equiv="refresh" content="3;URL=entri.php?succes=confirmation">';  
+
+  echo "</div>";
+      
+
+
+
+ 
+}
+
+
+?>
+<style type="text/css">
+.succes{
+  background: #66CCFF;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 3px;
+  width: 34%;
+  margin:auto;
+  border-top:11px solid #6699FF;
+  line-height: 22px;
+
+}
+</style>
+
+</form>
+<script>
+$(function() {
+
+  $("form[name='entri']").validate({
+
+    rules: {
+
+      nama_lengkap: "required",
+      email: "required",
+      no_telpon: "required",
+      bank: "required",
+      total_tf: "required",
+      keterangan_beli: "required",
+      provinsi: "required",
+      kota: "required",
+            kecamatan: "required",
+                  alamat_lengkap: "required",
+        required: true,
+
+
+      },
+ 
+
+    messages: {
+      nama_lengkap: "Silahkan Isi Nama Lengkap anda dengan Benar jangan sampai kosong!",
+
+      email: "Silahkan Isi Email anda dengan benar dan Aktif!",
+
+        no_telpon: "Nomor Telepon aktif maksimal 13 Character jangan sampai kosong!",
+
+          bank: "Isi Bank yang anda gunakan!",
+
+            total_tf: "Isi nominal Transfer anda disini!",
+
+                keterangan_beli: "Tulis keterangan pembelian anda dengan Jelas!",
+
+                  provinsi: "Provinsi!",
+                    kota: "Kota!",
+                      kecamatan: "Kecamatan!",
+                        alamat_lengkap: "Tulis keterangan alamat lengkap anda dengan Jelas!",
+    },
+
+
+
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+<script type="text/javascript">
+$(function(){
+      $('#example2').priceFormat({
+      prefix: 'Rp ',
+      centsSeparator: ',',
+      thousandsSeparator: '.'
+       });
+})
+</script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
